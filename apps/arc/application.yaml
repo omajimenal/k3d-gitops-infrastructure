@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: action-runner-controller
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://actions-runner-controller.github.io/actions-runner-controller'
+    chart: actions-runner-controller
+    targetRevision: 0.23.7
+    helm:
+      releaseName: arc
+      values: |
+        authSecret:
+          create: false
+          name: controller-manager
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: arc-runners
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
