@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/omajimenal/k3d-gitops-infrastructure.git'
     targetRevision: HEAD
-    path: apps/workloads/manifests
+    path: workloads/echo-server
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: dev
