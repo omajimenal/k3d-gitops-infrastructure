@@ -1,0 +1,17 @@
+name: Test Self-Hosted ARC Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-k3d-runner:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Run test command in k3d
+        run: |
+          echo "¡Ejecutando desde el runner de ARC dentro del clúster k3d!"
+          uname -a
+          hostname
