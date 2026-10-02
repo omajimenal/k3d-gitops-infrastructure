@@ -1,0 +1,17 @@
+name: Test Docker-in-Docker (DinD)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-docker:
+    runs-on: self-hosted
+    steps:
+      - name: Check Docker version
+        run: |
+          docker version
+          docker info
+
+      - name: Build and run test container
+        run: |
+          docker run --rm alpine echo "¡Docker-in-Docker funcionando correctamente en k3d!"
