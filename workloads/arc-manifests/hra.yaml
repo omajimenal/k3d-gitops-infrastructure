@@ -7,9 +7,8 @@ spec:
   scaleTargetRef:
     kind: RunnerDeployment
     name: k3d-github-runner
-  minReplicas: 0
+  minReplicas: 1 # Set minReplicas to 1 if you want 1 warm runner standing by
   maxReplicas: 5
   scaleUpTriggers:
-    - githubEvent:
-        workflowJob: {}
-      duration: "5m"
+    - githubEvent: {}
+      duration: "5m" # Holds capacity longer to stop rapid scale-down
