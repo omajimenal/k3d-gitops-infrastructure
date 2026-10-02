@@ -1,0 +1,17 @@
+name: Test ARC Autoscaling
+
+on:
+  workflow_dispatch:
+
+jobs:
+  parallel-job:
+    name: Parallel Task
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        task-id: [1, 2, 3, 4]
+    steps:
+      - name: Simulate workload
+        run: |
+          echo "Ejecutando tarea paralela #${{ matrix.task-id }} en el runner $(hostname)"
+          sleep 45
