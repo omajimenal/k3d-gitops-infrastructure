@@ -1,0 +1,15 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: k3d-runner-autoscaler
+  namespace: arc-runners
+spec:
+  scaleTargetRef:
+    kind: RunnerDeployment
+    name: k3d-github-runner
+  minReplicas: 0
+  maxReplicas: 5
+  scaleUpTriggers:
+    - githubEvent:
+        workflowJob: {}
+      duration: "5m"
