@@ -8,3 +8,4 @@ spec:
   template:
     spec:
       repository: omajimenal/k3d-gitops-infrastructure
+      dockerdWithinRunnerContainer: true
